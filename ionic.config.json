@@ -1,5 +1,7 @@
 {
   "name": "Smart",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,0 +1,33 @@
+.logo-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: fit-content;
+}
+
+.register {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: fit-content;
+    color: black;
+}
+
+.login-process {
+    font-size :15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.login {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+custom-loader-class {
+    --background: #F4B004;
+    --spinner-color: #F94701;
+}

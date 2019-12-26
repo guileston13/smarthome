@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="end" (click)="closeModal()" color="primary">Close</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>
+      <ion-icon name="laptop"></ion-icon>
+    </ion-label>
+    <ion-input type="text" placeholder="Appliances" [(ngModel)]="appliances"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <ion-icon name="copy"></ion-icon>
+    </ion-label>
+    <ion-input type="text" placeholder="Device List" [(ngModel)]="deviceList"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <ion-icon name="pin"></ion-icon>
+    </ion-label>
+    <ion-input type="text" placeholder="Device Area" [(ngModel)]="area"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <ion-icon name="logo-buffer"></ion-icon>
+    </ion-label>
+    <ion-input type="text" placeholder="Mac Address" [(ngModel)]="macAddress"></ion-input>
+  </ion-item>
+  <ion-button expand="block" class="ion-padding" color="secondary" (click)="register()">Create Device
+  </ion-button>
+</ion-content>

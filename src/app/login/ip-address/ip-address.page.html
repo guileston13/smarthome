@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>IP Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label>
+      <ion-icon name="lock"></ion-icon>
+    </ion-label>
+    <ion-input type="text" placeholder="IP Address" [(ngModel)]="input_address"></ion-input>
+  </ion-item>
+  <ion-button (click)="add_address()" color="warning" expand="block">Connect</ion-button>
+
+</ion-content>
