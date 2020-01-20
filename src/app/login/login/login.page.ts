@@ -12,7 +12,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  firstname = '';
+  firstName = '';
   password = '';
   event = '';
   constructor(
@@ -30,14 +30,15 @@ export class LoginPage implements OnInit {
 
   login() {
     return new Promise(resolve => {
-      console.log("Hello");
+
       let body = {
         event: 'login',
-        firstname: this.firstname,
+        firstName: this.firstName,
         password: this.password,
       };
 
       this.postPvdr.postData(body, 'account/event').subscribe(data => {
+        console.log(data);
         console.log(Object.keys(data).length);
         if (Object.keys(data).length == 0) {
           //this.router.navigate(['smart', 'dashboard']);
@@ -50,6 +51,7 @@ export class LoginPage implements OnInit {
           this.access();
         }
       });
+
     });
 
   }

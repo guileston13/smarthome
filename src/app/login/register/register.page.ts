@@ -40,7 +40,7 @@ export class RegisterPage implements OnInit {
       };
 
       this.postPvdr.postData(body, 'account/event').subscribe(data => {
-        //console.log(+ JSON.stringify(data));
+        console.log(data);
       });
     });
   }

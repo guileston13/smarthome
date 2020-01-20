@@ -14,7 +14,6 @@ const routes: Routes = [
     path: 'ip-address',
     loadChildren: () => import('./login/ip-address/ip-address.module').then(m => m.IpAddressPageModule)
   },
-
 ];
 
 @NgModule({

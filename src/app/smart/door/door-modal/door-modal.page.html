@@ -7,11 +7,15 @@
 
 
 <ion-content class="ion-padding">
+
   <ion-item>
-    <ion-label>
-      <ion-icon name="laptop"></ion-icon>
-    </ion-label>
-    <ion-input type="text" placeholder="Appliances" [(ngModel)]="appliances"></ion-input>
+    <ion-label>Type of Device</ion-label>
+    <ion-select multiple="false" [(ngModel)]="appliances" cancelText="Cancel" okText="Yes">
+      <ion-select-option value="Appliances">Appliances</ion-select-option>
+      <ion-select-option value="Door">Door</ion-select-option>
+      <ion-select-option value="CCTV">CCTV</ion-select-option>
+      <ion-select-option value="Alarm">Alarm</ion-select-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>

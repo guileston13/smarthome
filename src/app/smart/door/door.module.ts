@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DoorPageRoutingModule } from './door-routing.module';
 
 import { DoorPage } from './door.page';
+import { DoorModalPage } from './door-modal/door-modal.page';
 
 @NgModule({
   imports: [
@@ -15,6 +16,8 @@ import { DoorPage } from './door.page';
     IonicModule,
     DoorPageRoutingModule
   ],
-  declarations: [DoorPage]
+  declarations: [DoorPage, DoorModalPage],
+  entryComponents: [DoorModalPage]
+
 })
-export class DoorPageModule {}
+export class DoorPageModule { }

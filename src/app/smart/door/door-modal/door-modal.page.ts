@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { PostProvider } from '../../../../provider/post-provider';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PostProvider } from '../../../../provider/post-provider';
+import { ModalController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'modal-page',
-  templateUrl: './modal.page.html',
-  styleUrls: ['./modal.page.scss'],
-
+  selector: 'app-door-modal',
+  templateUrl: './door-modal.page.html',
+  styleUrls: ['./door-modal.page.scss'],
 })
-export class ModalPage implements OnInit {
+export class DoorModalPage implements OnInit {
   appliances = '';
   deviceList = '';
   area = '';
@@ -18,37 +17,44 @@ export class ModalPage implements OnInit {
   accountID = '';
   unregistered = '';
   constructor(
-    private modalController: ModalController,
-    private postPvdr: PostProvider,
     private router: Router,
+    private postPvdr: PostProvider,
+    private modalController: ModalController,
     private loadingController: LoadingController
   ) {
-
+    // let accountID = localStorage.getItem("id");
+    // let body = {
+    //   event: 'view-unregistered-device',
+    //   accountID: accountID
+    // };
+    // this.postPvdr.postData(body, 'devices/event').subscribe(data => {
+    //   this.unregistered = data;
+    //   console.log(this.unregistered);
+    // });
   }
 
   ionViewWillEnter() {
+    console.log("Hello");
     let accountID = localStorage.getItem("id");
     let body = {
       event: 'view-unregistered-device',
       accountID: accountID
     };
-    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+    this.postPvdr.postData(body, 'devices/event?event=view-unregistered-device').subscribe(data => {
       this.unregistered = data;
-      console.log(this.unregistered);
+      console.log(data);
     });
   }
 
   ngOnInit() {
-
   }
 
   async closeModal() {
     await this.modalController.dismiss();
   }
 
-
-
   register() {
+
     let account = localStorage.getItem("id");
     return new Promise(resolve => {
       let body = {
@@ -60,25 +66,15 @@ export class ModalPage implements OnInit {
         accountID: account
       };
 
-      this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+      this.postPvdr.postData(body, 'devices/event?event=register-devices').subscribe(data => {
         //console.log(+ JSON.stringify(data));
         this.modal_ip();
       });
 
     });
   }
-  async display() {
-    let accountID = localStorage.getItem("id");
-    let body = {
-      event: 'view-registered-device',
-      accountID: accountID
-    };
-    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
-      console.log(data);
-      this.modalController.dismiss();
-      this.appliances = data;
-    });
-  }
+
+
 
   async modal_ip() {
     const loading = await this.loadingController.create({
@@ -95,4 +91,8 @@ export class ModalPage implements OnInit {
         window.location.reload();
       });
   }
+
+
+
+
 }

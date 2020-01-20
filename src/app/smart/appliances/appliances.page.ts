@@ -38,7 +38,9 @@ export class AppliancesPage implements OnInit {
     let accountID = localStorage.getItem("id");
     let body = {
       event: 'view-registered-device',
-      accountID: accountID
+      accountID: accountID,
+      type: 'Appliances'
+
     };
     this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
       console.log(data);
@@ -65,7 +67,7 @@ export class AppliancesPage implements OnInit {
   async clickable(x) {
     console.log(x);
   }
-
+  // Notification
   async toogle_change(registered_device_id, status) {
     let body = {
       event: 'toogle-device',
@@ -74,6 +76,7 @@ export class AppliancesPage implements OnInit {
     };
     this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
       console.log(data);
+      this.toogle_appliances();
       let onesignal_body = {
         "app_id": "2512695d-9642-462f-ad9e-cc4b3c1109bf",
         "included_segments": ["Active Users"],
@@ -81,18 +84,33 @@ export class AppliancesPage implements OnInit {
         "contents": { "en": "English Message" }
       };
       this.postPvdr.postOnesignal(onesignal_body, 'api/v1/notification').subscribe(data => {
-        console.log(data);
       });
+
     });
   }
 
+  async toogle_appliances() {
+    let accountID = localStorage.getItem("id");
+    let body = {
+      event: 'view-registered-device',
+      accountID: accountID,
+      type: 'Appliances'
+
+    };
+    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+      console.log(data);
+      this.appliances = data;
+    });
+  }
+
+  // Model for Adding
   async presentModal() {
     const modal = await this.modalController.create({
       component: ModalPage
     });
     return await modal.present();
   }
-
+  // Model for View Application
   async presentModalAppliances(x) {
     const modal = await this.modalController.create({
 

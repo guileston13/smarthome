@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>door</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <img src="../assets/door_t2.jpg" />
+  <ion-fab horizontal="start" vertical="top" slot="fixed">
+    <ion-fab-button href="/smart/dashboard">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-<ion-content>
+  <ion-list>
+    <ion-list-header class="header-head">Doors</ion-list-header>
 
+    <ion-item *ngFor="let appliance of door">
+      <div (click)="presentModalAppliances(appliance.registered_devices_id)">
+        <ion-label>{{appliance.application}}
+        </ion-label>
+      </div>
+      <ion-avatar slot="end" *ngIf="appliance.state === 1">
+        <ion-toggle color="primary" Checked
+          (ionChange)="toogle_change(appliance.registered_devices_id, appliance.state)"></ion-toggle>
+      </ion-avatar>
+      <ion-avatar slot="end" *ngIf="appliance.state === 0">
+        <ion-toggle color="primary" (ionChange)="toogle_change(appliance.registered_devices_id, appliance.state)">
+        </ion-toggle>
+      </ion-avatar>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-fab horizontal=" start" vertical="top" slot="fixed">
+      <ion-fab-button href="/smart/dashboard" color="light">
+        <ion-icon name="arrow-dropleft"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-toolbar>
+  <ion-button (click)="presentModal()" color="primary" expand="full">Add Device</ion-button>
+</ion-footer>

@@ -15,7 +15,7 @@ import { PostProvider } from '../provider/post-provider';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 const server_ip_address = localStorage.getItem("server_ip_address");
-const config: SocketIoConfig = { url: 'http://' + "192.168.254.100" + ':3000', options: {} };
+const config: SocketIoConfig = { url: 'http://' + server_ip_address + ':3000', options: {} };
 
 @NgModule({
   declarations: [AppComponent],
