@@ -14,12 +14,12 @@
         <ion-label>{{appliance.application}}
         </ion-label>
       </div>
-      <ion-avatar slot="end" *ngIf="appliance.status === 1">
+      <ion-avatar slot="end" *ngIf="appliance.state === 1">
         <ion-toggle color="primary" Checked
-          (ionChange)="toogle_change(appliance.registered_devices_id, appliance.status)"></ion-toggle>
+          (ionChange)="toogle_change(appliance.registered_devices_id, appliance.state)"></ion-toggle>
       </ion-avatar>
-      <ion-avatar slot="end" *ngIf="appliance.status === 0">
-        <ion-toggle color="primary" (ionChange)="toogle_change(appliance.registered_devices_id, appliance.status)">
+      <ion-avatar slot="end" *ngIf="appliance.state === 0">
+        <ion-toggle color="primary" (ionChange)="toogle_change(appliance.registered_devices_id, appliance.state)">
         </ion-toggle>
       </ion-avatar>
     </ion-item>

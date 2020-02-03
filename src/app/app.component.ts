@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { Component } from '@angular/core';
 
-import { Platform, AlertController } from '@ionic/angular';
+import { Platform, AlertController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
@@ -19,7 +19,9 @@ export class AppComponent {
     private authenticationService: AuthenticationService,
     private router: Router,
     private oneSignal: OneSignal,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastController: ToastController
+
   ) {
     this.initializeApp();
   }
@@ -49,6 +51,7 @@ export class AppComponent {
       let title = data.payload.title;
       let additionalData = data.payload.additionalData;
       this.showAlert(title, msg, additionalData.task);
+      this.Correct();
     });
 
     // Notification was really clicked/opened
@@ -63,7 +66,6 @@ export class AppComponent {
   }
 
   async showAlert(title, msg, task) {
-    var ones = localStorage.getItem("Onesignal");
     const alert = await this.alertCtrl.create({
       header: title,
       subHeader: msg,
@@ -77,5 +79,13 @@ export class AppComponent {
       ]
     })
     alert.present();
+  }
+
+  async Correct() {
+    const toast = await this.toastController.create({
+      message: 'Successfully Entered the PIN.',
+      duration: 2000
+    });
+    toast.present();
   }
 }

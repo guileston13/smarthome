@@ -11,7 +11,11 @@
     <ion-card-header class="appliances-card">
       <ion-card-subtitle class="appliances-font">{{appliance.deviceLists}}</ion-card-subtitle>
       <ion-card-title class="appliances-font">{{appliance.application}}</ion-card-title>
-      <h3 *ngFor="let message of messages">Power usage: {{message.text}}</h3>
+      <div *ngFor="let message of messages">
+        <span> Voltage: {{message.voltage}} </span>
+        <span> Current: {{message.current}}</span>
+        <span> Power : {{message.power}} </span>
+      </div>
     </ion-card-header>
     <ion-item>
       <ion-icon name="laptop" slot="start"></ion-icon>
@@ -35,8 +39,30 @@
         <ion-icon name="navigate" slot="start"></ion-icon>
         <ion-label>{{appliance.macAddress}}</ion-label>
       </ion-item>
+      <!-- <ion-item *ngFor="let table of tables">
+        <h4>{{ table.dateRecorded }}</h4>
+        <ion-label>{{table.voltage}}</ion-label>
+        <ion-label>{{table.power}}</ion-label>
+        <ion-label>{{table.current}}</ion-label>
+      </ion-item> -->
     </ion-card-content>
   </ion-card>
+  <ion-button (click)="exportCSV()">Export</ion-button>
+  <table border="1" class="data-table">
+    <tr>
+      <td>Date</td>
+      <td>Voltage</td>
+      <td>Current</td>
+      <td>Power</td>
+    </tr>
+
+    <tr *ngFor="let table of tables">
+      <td>{{table.dateRecorded }}</td>
+      <td>{{table.voltage}}</td>
+      <td>{{table.power}}</td>
+      <td>{{table.current}}</td>
+    </tr>
+  </table>
 
 </ion-content>
 

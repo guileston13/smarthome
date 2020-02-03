@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ModalAppliancesPageRoutingModule } from './modal-appliances-routing.module';
+import { DoorPasswordPageRoutingModule } from './door-password-routing.module';
 
-import { ModalAppliancesPage } from './modal-appliances.page';
-
+import { DoorPasswordPage } from './door-password.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalAppliancesPageRoutingModule,
-
+    DoorPasswordPageRoutingModule
   ],
-  declarations: [ModalAppliancesPage]
+  declarations: [DoorPasswordPage]
 })
-export class ModalAppliancesPageModule { }
+export class DoorPasswordPageModule {}

@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'door-modal',
     loadChildren: () => import('./door-modal/door-modal.module').then( m => m.DoorModalPageModule)
+  },
+  {
+    path: 'door-password',
+    loadChildren: () => import('./door-password/door-password.module').then( m => m.DoorPasswordPageModule)
   }
 ];
 

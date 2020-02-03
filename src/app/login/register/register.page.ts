@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostProvider } from '../../../provider/post-provider';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -16,10 +17,11 @@ export class RegisterPage implements OnInit {
   contactNumber: string = "";
   password: string = "";
   birthday: string = "";
-
+  PIN: string = "";
   constructor(
     private postPvdr: PostProvider,
     private router: Router,
+    private toastController: ToastController
   ) {
     console.log(localStorage.getItem("id"));
   }
@@ -36,12 +38,21 @@ export class RegisterPage implements OnInit {
         email: this.email,
         contactNumber: this.contactNumber,
         password: this.password,
-        birthday: this.birthday
+        birthday: this.birthday,
+        PIN: this.PIN
       };
 
-      this.postPvdr.postData(body, 'account/event').subscribe(data => {
+      this.postPvdr.postData(body, 'account/event?event=register').subscribe(data => {
         console.log(data);
+        this.Correct();
       });
     });
+  }
+  async Correct() {
+    const toast = await this.toastController.create({
+      message: 'Successfully Registered',
+      duration: 2000
+    });
+    toast.present();
   }
 }

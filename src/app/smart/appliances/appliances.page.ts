@@ -36,52 +36,42 @@ export class AppliancesPage implements OnInit {
   }
   ionViewWillEnter() {
     let accountID = localStorage.getItem("id");
+    console.log(accountID);
     let body = {
       event: 'view-registered-device',
       accountID: accountID,
       type: 'Appliances'
-
     };
-    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+    this.postPvdr.postData(body, 'devices/event?event=view-registered-device').subscribe(data => {
       console.log(data);
       this.appliances = data;
     });
   }
   ngOnInit() {
 
-    // this.socket.on('data1', (message) => {
-    //   this.messages = [];
-    //   this.messages.push(message);
-    // });
-    // let accountID = localStorage.getItem("id");
-    // let body = {
-    //   event: 'view-registered-device',
-    //   accountID: accountID
-    // };
-    // this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
-    //   console.log(data);
-    //   this.appliances = data;
-    // });
+
   }
 
   async clickable(x) {
     console.log(x);
   }
   // Notification
-  async toogle_change(registered_device_id, status) {
+  async toogle_change(registered_device_id, state) {
+    console.log(state);
     let body = {
       event: 'toogle-device',
       registered_device_id: registered_device_id,
-      status: status
+      state: state
     };
-    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+    this.postPvdr.postData(body, 'devices/event?event=toogle-device').subscribe(data => {
       console.log(data);
       this.toogle_appliances();
       let onesignal_body = {
         "app_id": "2512695d-9642-462f-ad9e-cc4b3c1109bf",
         "included_segments": ["Active Users"],
-        "data": { "foo": "bar" },
-        "contents": { "en": "English Message" }
+        "headings": { "en": "My Notification" },
+        "contents": { "en": "Your Device has been turn On " },
+        "data": { "task": "Sent Through API" },
       };
       this.postPvdr.postOnesignal(onesignal_body, 'api/v1/notification').subscribe(data => {
       });
@@ -97,7 +87,7 @@ export class AppliancesPage implements OnInit {
       type: 'Appliances'
 
     };
-    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+    this.postPvdr.postData(body, 'devices/event?event=view-register-device').subscribe(data => {
       console.log(data);
       this.appliances = data;
     });

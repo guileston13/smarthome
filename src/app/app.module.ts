@@ -14,6 +14,9 @@ import { HttpModule } from '@angular/http';
 import { PostProvider } from '../provider/post-provider';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 
+import { PapaParseModule } from 'ngx-papaparse';
+import { File } from '@ionic-native/file/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 const server_ip_address = localStorage.getItem("server_ip_address");
 const config: SocketIoConfig = { url: 'http://' + server_ip_address + ':3000', options: {} };
 
@@ -26,6 +29,7 @@ const config: SocketIoConfig = { url: 'http://' + server_ip_address + ':3000', o
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpModule,
+    PapaParseModule,
     IonicStorageModule.forRoot()
   ],
   providers: [
@@ -33,7 +37,9 @@ const config: SocketIoConfig = { url: 'http://' + server_ip_address + ':3000', o
     SplashScreen,
     PostProvider,
     OneSignal,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    File,
+    SocialSharing
   ],
   bootstrap: [AppComponent]
 })

@@ -32,7 +32,7 @@ export class ModalPage implements OnInit {
       event: 'view-unregistered-device',
       accountID: accountID
     };
-    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+    this.postPvdr.postData(body, 'devices/event?event=view-unregistered-device').subscribe(data => {
       this.unregistered = data;
       console.log(this.unregistered);
     });
@@ -60,7 +60,7 @@ export class ModalPage implements OnInit {
         accountID: account
       };
 
-      this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+      this.postPvdr.postData(body, 'devices/event?event=register-devices').subscribe(data => {
         //console.log(+ JSON.stringify(data));
         this.modal_ip();
       });
@@ -73,7 +73,7 @@ export class ModalPage implements OnInit {
       event: 'view-registered-device',
       accountID: accountID
     };
-    this.postPvdr.postData(body, 'device/register-device').subscribe(data => {
+    this.postPvdr.postData(body, 'devices/event?event=view-registered-device').subscribe(data => {
       console.log(data);
       this.modalController.dismiss();
       this.appliances = data;
