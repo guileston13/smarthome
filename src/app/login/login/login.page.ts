@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     let server = localStorage.getItem("server_ip_address");
     console.log(localStorage.getItem("server_ip_address"));
   }
-
+  // Login
   login() {
     return new Promise(resolve => {
 
@@ -43,15 +43,15 @@ export class LoginPage implements OnInit {
         console.log(data);
         console.log(Object.keys(data).length);
         if (Object.keys(data).length == 0) {
-          //this.router.navigate(['smart', 'dashboard']);
+          // Wrong Password cant Access
           this.cantaccess();
           console.log("cant");
 
         } else {
           console.log("in");
           console.log(data[0].pin);
-          localStorage.setItem("id", data[0]._id);
-          localStorage.setItem("pin", data[0].pin);
+          localStorage.setItem("id", data[0]._id); // Saving ID for User
+          localStorage.setItem("pin", data[0].pin); // Saving its PIN to recognize the User every time he transact
           this.access();
         }
       });
@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
     });
 
   }
-
+  // Loading Screen Successful Login
   async access() {
     this.loadingController.create({
       message: 'Welcome to SmartHome',
@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
       this.router.navigate(['smart', 'dashboard']);
     });
   }
-
+  // Loading Screen Wrong Password
   async cantaccess() {
     this.loadingController.create({
       message: 'Wrong Username or Password',

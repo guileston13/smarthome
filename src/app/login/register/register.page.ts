@@ -32,7 +32,7 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
   }
-
+  // Register an User Account 
   register() {
     return new Promise(resolve => {
       let body = {
@@ -56,6 +56,8 @@ export class RegisterPage implements OnInit {
       });
     });
   }
+
+  // Present Toaster
   async Correct() {
     const toast = await this.toastController.create({
       message: 'Successfully Registered',

@@ -19,7 +19,7 @@ export class IpAddressPage implements OnInit {
 
   ngOnInit() {
   }
-
+  // IP Address for to connect to a specific server OFFLINE
   async add_address() {
     let server = localStorage.getItem("server_ip_address");
     server = '';
@@ -28,6 +28,7 @@ export class IpAddressPage implements OnInit {
     this.modal_ip();
   }
 
+  // Progress Bar
   async modal_ip() {
     const loading = await this.loadingController.create({
       message: 'Sucessfully Change IP',
