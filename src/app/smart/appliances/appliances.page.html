@@ -10,13 +10,13 @@
     <ion-list-header class="header-head">List of Applications</ion-list-header>
 
     <ion-item *ngFor="let appliance of appliances">
-      <div (click)="presentModalAppliances(appliance.registered_devices_id)">
+      <div (click)="presentModalAppliances(appliance.registered_devices_id,appliance.macAddress)">
         <ion-label>{{appliance.application}}
         </ion-label>
       </div>
       <ion-avatar slot="end" *ngIf="appliance.state === 1">
         <ion-toggle color="primary" Checked
-          (ionChange)="toogle_change(appliance.registered_devices_id, appliance.state)"></ion-toggle>
+          (ionChange)="toogle_change(appliance.registered_devices_id, appliance.state,Appliances)"></ion-toggle>
       </ion-avatar>
       <ion-avatar slot="end" *ngIf="appliance.state === 0">
         <ion-toggle color="primary" (ionChange)="toogle_change(appliance.registered_devices_id, appliance.state)">

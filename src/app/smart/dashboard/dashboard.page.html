@@ -1,50 +1,57 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-button (click)="ionViewWillLeave()">
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentModal()">
+        SETTINGS
+      </ion-button>
+    </ion-buttons>
     <ion-title>Smart Home</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <div class="head">
+<ion-content class="ion-padding background">
+  <ion-card>
     <a href="/smart/appliances">
       <div class="card-back appliances">
         <img src="../assets/table_t.jpg" />
       </div>
     </a>
+  </ion-card>
+  <ion-card>
+    <!-- redirect door -->
     <a href="/smart/door">
       <div class="card-back door">
         <img src="../assets/door_t2.jpg" />
       </div>
     </a>
-    <a href="/smart/cctv">
+  </ion-card>
+  <ion-card>
+    <a (click)="cctvLauncherApp()">
       <div class="card-back cctv">
         <img src="../assets/cctv_3.jpg" />
       </div>
     </a>
-    <a href="/smart/alarm">
+  </ion-card>
+  <ion-card>
+    <a (click)="sensor()">
       <div class="card-back alarm">
         <img src="../assets/alarm_2.jpg" />
       </div>
     </a>
-  </div>
-</ion-content>
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Join Chat
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+  </ion-card>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label stacked> Set Nickname </ion-label>
-    <ion-input type="text" [(ngModel)]="nickname" placeholder="Nickname"></ion-input>
-  </ion-item>
-  <button ion-button full (click)="joinChat()" [disabled]="nickname ===''">Join Chat as {{ nickname }}</button>
-</ion-content> -->
+
+
+  <!-- <div class="head">
+    <a href="/smart/appliances">
+      <div class="card-back appliances">
+        <img src="../assets/table_t.jpg" />
+      </div>
+    </a>
+
+  </div> -->
+</ion-content>

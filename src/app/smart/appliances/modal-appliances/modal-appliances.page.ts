@@ -17,7 +17,12 @@ export class ModalAppliancesPage implements OnInit {
   appliances = [];
   messages = [];
   tables = [];
+  chat = [];
+  macAddress = '';
   co = 0;
+  voltage = 0;
+  current = 0;
+  power = 0;
   constructor(
     navParams: NavParams,
     public postPvdr: PostProvider,
@@ -29,7 +34,7 @@ export class ModalAppliancesPage implements OnInit {
     private socialSharing: SocialSharing
 
   ) {
-
+    const macAddress = navParams.get('macAddress');
     const device_id = navParams.get('device-id');
     let accountID = localStorage.getItem("id");
 
@@ -47,41 +52,12 @@ export class ModalAppliancesPage implements OnInit {
       this.tables = data;
     });
 
-
-
-
-    this.socket.on('data1', (message) => {
-      this.messages = [];
-      this.messages.push(message);
-      let count_socket = this.co++
-      if (count_socket == 5) {
-        this.co = 0;
-        this.save_data_on_timer(this.messages);
-      } else {
-        //console.log(count_socket);
-        //console.log(this.messages[0].voltage);
-      }
-
-    });
   }
 
-  async save_data_on_timer(side) {
-    console.log(side[0].voltage);
-    console.log(side);
-    let accountID = localStorage.getItem("id");
-    let body = {
-      event: 'insert-consumptions',
-      accountID: accountID,
-      voltage: side[0].voltage,
-      current: side[0].current,
-      power: side[0].power,
-      deviceID: side[0]._id
-    };
-    this.postPvdr.postData(body, 'devices/consumption/event?event=insert-consumptions').subscribe(data => {
-      this.getconsumptions();
-    });
-  }
 
+
+
+  // Display Consumption of a Appliances
   getconsumptions() {
     let accountID = localStorage.getItem("id");
     let body = {
@@ -94,6 +70,8 @@ export class ModalAppliancesPage implements OnInit {
     });
 
   }
+
+  // View Registered Appliances
   getappliances() {
     let accountID = localStorage.getItem("id");
     let body = {
@@ -101,11 +79,11 @@ export class ModalAppliancesPage implements OnInit {
       accountID: accountID
     };
     this.postPvdr.postData(body, 'devices/event?event=view-registered-device').subscribe(data => {
-      console.log(data);
       this.appliances = data;
     });
   }
 
+  // Toogle ON and OFF Appliances
   async toogle_change(registered_device_id, status) {
     let body = {
       event: 'toogle-device',
@@ -113,22 +91,20 @@ export class ModalAppliancesPage implements OnInit {
       status: status
     };
     this.postPvdr.postData(body, 'devices/event?event=toogle-device').subscribe(data => {
-      console.log(data);
-      //this.appliances = data;
+
     });
   }
 
+  // Dismiss
   async closeModal() {
     await this.modalController.dismiss();
   }
 
-  // CSV
-
+  // CSV File
   exportCSV() {
     let csv = this.papa.unparse({
       data: this.tables
     })
-    console.log(csv);
     if (this.plt.is('cordova')) {
       this.file.writeFile(this.file.dataDirectory, 'data.csv', csv, { replace: true }).then(res => {
         this.socialSharing.share(null, null, res.nativeURL, null);
@@ -146,6 +122,13 @@ export class ModalAppliancesPage implements OnInit {
 
 
   ngOnInit() {
+    // Socket IO on live stream message consumption Online
+    console.log("Hello ngOnInit Modal Appliances");
+    this.socket.on(this.macAddress, (message) => {
+      //console.log(message);
+      this.messages = [];
+      this.messages.push(message);
+    });
   }
 
 

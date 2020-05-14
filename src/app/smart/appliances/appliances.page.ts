@@ -28,12 +28,10 @@ export class AppliancesPage implements OnInit {
     public postPvdr: PostProvider
   ) {
 
-    // this.getMessages().subscribe(message => {
-    //   this.messages.push(message);
-    //   //console.log(this.messages);
-    // });
 
   }
+
+  // Display Existing Registered Device Appliances
   ionViewWillEnter() {
     let accountID = localStorage.getItem("id");
     console.log(accountID);
@@ -48,23 +46,26 @@ export class AppliancesPage implements OnInit {
     });
   }
   ngOnInit() {
-
+    console.log("welcomeBack");
 
   }
 
   async clickable(x) {
     console.log(x);
   }
-  // Notification
-  async toogle_change(registered_device_id, state) {
+
+
+  // Notification in Android
+  async toogle_change(registered_device_id, state, Appliances) {
     console.log(state);
     let body = {
       event: 'toogle-device',
       registered_device_id: registered_device_id,
-      state: state
+      state: state,
+      type: Appliances
     };
     this.postPvdr.postData(body, 'devices/event?event=toogle-device').subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.toogle_appliances();
       let onesignal_body = {
         "app_id": "2512695d-9642-462f-ad9e-cc4b3c1109bf",
@@ -79,6 +80,7 @@ export class AppliancesPage implements OnInit {
     });
   }
 
+  // Toogle Off and On Appliances
   async toogle_appliances() {
     let accountID = localStorage.getItem("id");
     let body = {
@@ -87,8 +89,8 @@ export class AppliancesPage implements OnInit {
       type: 'Appliances'
 
     };
-    this.postPvdr.postData(body, 'devices/event?event=view-register-device').subscribe(data => {
-      console.log(data);
+    this.postPvdr.postData(body, 'devices/event?event=view-registered-device').subscribe(data => {
+      console.log("Hello DAta");
       this.appliances = data;
     });
   }
@@ -100,13 +102,15 @@ export class AppliancesPage implements OnInit {
     });
     return await modal.present();
   }
+
   // Model for View Application
-  async presentModalAppliances(x) {
+  async presentModalAppliances(x, macAddress) {
     const modal = await this.modalController.create({
 
       component: ModalAppliancesPage,
       componentProps: {
         'device-id': x,
+        'macAddress': macAddress
       }
     });
     return await modal.present();

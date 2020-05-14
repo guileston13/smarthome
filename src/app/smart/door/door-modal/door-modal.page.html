@@ -1,27 +1,25 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-button slot="end" (click)="closeModal()" color="primary">Close</ion-button>
   </ion-toolbar>
 </ion-header>
 
 
 
-<ion-content class="ion-padding">
+<ion-content padding class="ion-padding background">
 
   <ion-item>
     <ion-label>Type of Device</ion-label>
     <ion-select multiple="false" [(ngModel)]="appliances" cancelText="Cancel" okText="Yes">
       <ion-select-option value="Appliances">Appliances</ion-select-option>
       <ion-select-option value="Door">Door</ion-select-option>
+      <ion-select-option value="Window">Window</ion-select-option>
       <ion-select-option value="CCTV">CCTV</ion-select-option>
       <ion-select-option value="Alarm">Alarm</ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label>
-      <ion-icon name="copy"></ion-icon>
-    </ion-label>
     <ion-input type="text" placeholder="Device List" [(ngModel)]="deviceList"></ion-input>
   </ion-item>
 
@@ -42,6 +40,6 @@
     </ion-select>
   </ion-item>
 
-  <ion-button expand=" block" class="ion-padding" color="secondary" (click)="register()">Create Device
+  <ion-button expand="full" class="ion-padding" color="primary" (click)="register()">Create Device
   </ion-button>
 </ion-content>

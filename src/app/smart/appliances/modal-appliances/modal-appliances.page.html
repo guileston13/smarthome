@@ -11,6 +11,7 @@
     <ion-card-header class="appliances-card">
       <ion-card-subtitle class="appliances-font">{{appliance.deviceLists}}</ion-card-subtitle>
       <ion-card-title class="appliances-font">{{appliance.application}}</ion-card-title>
+      <span>SRR</span>
       <div *ngFor="let message of messages">
         <span> Voltage: {{message.voltage}} </span>
         <span> Current: {{message.current}}</span>
@@ -39,16 +40,15 @@
         <ion-icon name="navigate" slot="start"></ion-icon>
         <ion-label>{{appliance.macAddress}}</ion-label>
       </ion-item>
-      <!-- <ion-item *ngFor="let table of tables">
-        <h4>{{ table.dateRecorded }}</h4>
-        <ion-label>{{table.voltage}}</ion-label>
-        <ion-label>{{table.power}}</ion-label>
-        <ion-label>{{table.current}}</ion-label>
-      </ion-item> -->
+      <ion-item *ngFor="let ch of chat">
+        <ion-label>helo {{ch.voltage}}</ion-label>
+        <ion-label>hello</ion-label>
+        <ion-label>hello</ion-label>
+      </ion-item>
     </ion-card-content>
   </ion-card>
   <ion-button (click)="exportCSV()">Export</ion-button>
-  <table border="1" class="data-table">
+  <!-- <table border="1" class="data-table">
     <tr>
       <td>Date</td>
       <td>Voltage</td>
@@ -62,7 +62,7 @@
       <td>{{table.power}}</td>
       <td>{{table.current}}</td>
     </tr>
-  </table>
+  </table> -->
 
 </ion-content>
 

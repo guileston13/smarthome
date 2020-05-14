@@ -1,24 +1,23 @@
-<ion-content class="ion-padding">
+<ion-content padding class="background">
   <img class="logo-img" src="../assets/smart.png" />
   <div class="login-process">
     Proceed with your <br>
     <h4 class="login">Login</h4>
   </div>
-  <ion-item>
-    <ion-label>
-      <ion-icon name="person"></ion-icon>
-    </ion-label>
-    <ion-input type="text" placeholder="Username" [(ngModel)]="firstName"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>
-      <ion-icon name="lock"></ion-icon>
-    </ion-label>
-    <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-  <ion-button (click)="login()" color="secondary" expand="block">Login</ion-button>
-  <!-- <a (click)="login()" color="secondary" expand="block">Login</a> -->
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item>
+      <ion-label position="stacked">Username <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required type="text" [(ngModel)]="firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Password <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>
 
+  <ion-button (click)="login()" class="ion-no-margin" expand="block">Login</ion-button>
   <a expand="block" routerLink="/register" class="register" routerDirection="forward">Don't have an Account?
     Register</a>
   <a expand="block" routerLink="/ip-address" class="register" routerDirection="forward">Change IP before using

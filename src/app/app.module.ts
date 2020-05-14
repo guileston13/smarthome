@@ -17,6 +17,8 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { PapaParseModule } from 'ngx-papaparse';
 import { File } from '@ionic-native/file/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { AppLauncher } from '@ionic-native/app-launcher/ngx';
+
 const server_ip_address = localStorage.getItem("server_ip_address");
 const config: SocketIoConfig = { url: 'http://' + server_ip_address + ':3000', options: {} };
 
@@ -38,9 +40,12 @@ const config: SocketIoConfig = { url: 'http://' + server_ip_address + ':3000', o
     PostProvider,
     OneSignal,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AppLauncher,
     File,
     SocialSharing
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

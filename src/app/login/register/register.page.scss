@@ -5,3 +5,23 @@
     width: 50%;
 }
 
+ion-content.background{
+    --background: url(../../../assets/img/background.jpg) 0 0/100% 100% no-repeat;
+}
+
+ion-header.background{
+    --background: url(../../../assets/img/background.jpg) 0 0/100% 100% no-repeat;
+}
+
+.bg-transparent {
+    background: transparent;
+}
+
+ion-item{
+    background: transparent;
+}
+
+
+.item-native{
+    background: rgba(255,255,255,0.2) !important;
+}

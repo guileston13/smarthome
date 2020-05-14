@@ -15,6 +15,14 @@ const routes: Routes = [
   {
     path: 'door-password',
     loadChildren: () => import('./door-password/door-password.module').then( m => m.DoorPasswordPageModule)
+  },
+  {
+    path: 'door-history',
+    loadChildren: () => import('./door-history/door-history.module').then( m => m.DoorHistoryPageModule)
+  },
+  {
+    path: 'door-update',
+    loadChildren: () => import('./door-update/door-update.module').then( m => m.DoorUpdatePageModule)
   }
 ];
 

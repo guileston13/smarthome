@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   firstName = '';
   password = '';
   event = '';
+  playerid = '';
   constructor(
     private authService: AuthenticationService,
     private router: Router,
@@ -35,6 +36,7 @@ export class LoginPage implements OnInit {
         event: 'login',
         firstName: this.firstName,
         password: this.password,
+        player_id: this.playerid = localStorage.getItem("playerID")
       };
 
       this.postPvdr.postData(body, 'account/event').subscribe(data => {
@@ -47,7 +49,9 @@ export class LoginPage implements OnInit {
 
         } else {
           console.log("in");
+          console.log(data[0].pin);
           localStorage.setItem("id", data[0]._id);
+          localStorage.setItem("pin", data[0].pin);
           this.access();
         }
       });

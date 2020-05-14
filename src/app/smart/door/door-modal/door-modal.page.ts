@@ -22,19 +22,10 @@ export class DoorModalPage implements OnInit {
     private modalController: ModalController,
     private loadingController: LoadingController
   ) {
-    // let accountID = localStorage.getItem("id");
-    // let body = {
-    //   event: 'view-unregistered-device',
-    //   accountID: accountID
-    // };
-    // this.postPvdr.postData(body, 'devices/event').subscribe(data => {
-    //   this.unregistered = data;
-    //   console.log(this.unregistered);
-    // });
+
   }
 
   ionViewWillEnter() {
-    console.log("Hello");
     let accountID = localStorage.getItem("id");
     let body = {
       event: 'view-unregistered-device',
@@ -56,6 +47,7 @@ export class DoorModalPage implements OnInit {
   register() {
 
     let account = localStorage.getItem("id");
+    let pin = localStorage.getItem("pin");
     return new Promise(resolve => {
       let body = {
         event: 'register-devices',
@@ -63,7 +55,8 @@ export class DoorModalPage implements OnInit {
         deviceList: this.deviceList,
         area: this.area,
         macAddress: this.macAddress,
-        accountID: account
+        accountID: account,
+        pin: pin
       };
 
       this.postPvdr.postData(body, 'devices/event?event=register-devices').subscribe(data => {
@@ -83,13 +76,7 @@ export class DoorModalPage implements OnInit {
       spinner: "dots"
     });
     await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading Dismissed!');
-    this.modalController.dismiss()
-      .then(() => {
-        window.location.reload();
-      });
+    this.modalController.dismiss();
   }
 
 

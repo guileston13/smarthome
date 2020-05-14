@@ -25,7 +25,7 @@ export class ModalPage implements OnInit {
   ) {
 
   }
-
+  // Display Unregistered Appliances 
   ionViewWillEnter() {
     let accountID = localStorage.getItem("id");
     let body = {
@@ -41,13 +41,13 @@ export class ModalPage implements OnInit {
   ngOnInit() {
 
   }
-
+  // Dismiss Modal
   async closeModal() {
     await this.modalController.dismiss();
   }
 
 
-
+  // Register a Appliances
   register() {
     let account = localStorage.getItem("id");
     return new Promise(resolve => {
@@ -67,6 +67,8 @@ export class ModalPage implements OnInit {
 
     });
   }
+
+  // Registered on the Main Page Appliances
   async display() {
     let accountID = localStorage.getItem("id");
     let body = {
@@ -80,6 +82,7 @@ export class ModalPage implements OnInit {
     });
   }
 
+  // Progress Bar the Exit back to Main Page Appliances
   async modal_ip() {
     const loading = await this.loadingController.create({
       message: 'Successfully Added',
@@ -90,9 +93,6 @@ export class ModalPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading Dismissed!');
-    this.modalController.dismiss()
-      .then(() => {
-        window.location.reload();
-      });
+    this.modalController.dismiss();
   }
 }

@@ -18,6 +18,10 @@ export class RegisterPage implements OnInit {
   password: string = "";
   birthday: string = "";
   PIN: string = "";
+  question1: string = "";
+  question2: string = "";
+  answer1: string = "";
+  answer2: string = "";
   constructor(
     private postPvdr: PostProvider,
     private router: Router,
@@ -39,7 +43,11 @@ export class RegisterPage implements OnInit {
         contactNumber: this.contactNumber,
         password: this.password,
         birthday: this.birthday,
-        PIN: this.PIN
+        PIN: this.PIN,
+        question1: this.question1,
+        question2: this.question2,
+        answer1: this.answer1,
+        answer2: this.answer2
       };
 
       this.postPvdr.postData(body, 'account/event?event=register').subscribe(data => {

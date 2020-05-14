@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="end" (click)="closeModal()" color="primary">Close</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" class="ion-no-margin ion-no-padding" class="bg-transparent">
+    <ion-item>
+      <ion-label>Update your device</ion-label>
+      <ion-select multiple="false" [(ngModel)]="doorupdate" cancelText="Cancel" okText="Yes">
+        <ion-select-option value="Door">Door</ion-select-option>
+        <ion-select-option value="Window">Window</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Device Name <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="deviceLists"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" padding color="primary" (click)="dismiss()">Update
+  </ion-button>
+</ion-content>

@@ -9,6 +9,8 @@ import { DoorPageRoutingModule } from './door-routing.module';
 import { DoorPage } from './door.page';
 import { DoorModalPage } from './door-modal/door-modal.page';
 import { DoorPasswordPage } from './door-password/door-password.page';
+import { DoorHistoryPage } from './door-history/door-history.page';
+import { DoorUpdatePage } from './door-update/door-update.page';
 
 @NgModule({
   imports: [
@@ -17,8 +19,8 @@ import { DoorPasswordPage } from './door-password/door-password.page';
     IonicModule,
     DoorPageRoutingModule
   ],
-  declarations: [DoorPage, DoorModalPage, DoorPasswordPage],
-  entryComponents: [DoorModalPage, DoorPasswordPage]
+  declarations: [DoorPage, DoorModalPage, DoorPasswordPage, DoorHistoryPage, DoorUpdatePage],
+  entryComponents: [DoorModalPage, DoorPasswordPage, DoorHistoryPage, DoorUpdatePage]
 
 })
 export class DoorPageModule { }

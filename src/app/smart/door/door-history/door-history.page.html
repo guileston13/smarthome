@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>History</ion-title>
+    <ion-button slot="end" (click)="closeModal()" color="primary">Close</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      History
+    </ion-list-header>
+    <ion-item *ngFor="let his of history">
+      <ion-label slot="end">{{his.created | date:'medium'}}</ion-label>
+      <ion-label>{{his.deviceLists}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

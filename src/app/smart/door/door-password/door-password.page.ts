@@ -11,7 +11,8 @@ import { PostProvider } from 'src/provider/post-provider';
 export class DoorPasswordPage implements OnInit {
   pin = '';
   door = [];
-
+  playerid = '';
+  playerid1 = '';
   @Input() registered_device_id: string;
   @Input() state: string;
   constructor(
@@ -27,7 +28,7 @@ export class DoorPasswordPage implements OnInit {
 
   ngOnInit() {
   }
-
+  // Entering Password for Door
   password() {
     let accountID = localStorage.getItem("id");
     let pin = this.pin;
@@ -41,62 +42,66 @@ export class DoorPasswordPage implements OnInit {
     };
     this.postPvdr.postData(body, 'account/event?event=get-pin').subscribe(data => {
       console.log(data);
-      if (data[0]._id) {
-        this.Correct();
-        this.closeModal();
-        this.toogle_change(registered_device_id, state);
+      if (data) {
+        // Correct PIN
+        if (data[0]._id) {
+          this.Correct();
+          this.closeModal();
+
+        }
+        // Correct PIN
+        else {
+          this.Wrong();
+        }
 
       } else {
+        // Correct PIN
         this.Wrong();
       }
     });
 
   }
-
+  // Toogle Change on device
   async toogle_change(registered_device_id, state) {
+    this.playerid = localStorage.getItem("playerID");
+
     let body = {
       event: 'door-toogle-device',
       registered_device_id: registered_device_id,
-      state: state
+      state: state,
+      playerid: this.playerid,
     };
     this.postPvdr.postData(body, 'devices/event?event=door-toogle-device').subscribe(data => {
-      //console.log(data);
-      this.toogle_door();
 
-      // let onesignal_body = {
-      //   "app_id": "2512695d-9642-462f-ad9e-cc4b3c1109bf",
-      //   "included_segments": ["Active Users"],
-      //   "data": { "foo": "bar" },
-      //   "contents": { "en": "English Message" }
-      // };
-      // this.postPvdr.postOnesignal(onesignal_body, 'api/v1/notification').subscribe(data => {
-      //   //console.log(data);
-
-      // });
     });
   }
-
+  // Toogle Door
   async toogle_door() {
     let accountID = localStorage.getItem("id");
+
     let body = {
       event: 'view-registered-device',
       accountID: accountID,
-      type: 'Door'
+      type: 'Door',
+      playerid: this.playerid,
+      playerid1: this.playerid1
+
     };
     this.postPvdr.postData(body, 'devices/event?event=view-registered-device').subscribe(data => {
       console.log(data);
       this.door = data;
       window.location.reload();
-
     });
   }
-
+  // Dismiss
   async closeModal() {
     let registered_device_id = this.navParams.get('registered_device_id');
     let state = this.navParams.get('state');
-    await this.modalController.dismiss();
+    this.modalController.dismiss();
     this.toogle_change(registered_device_id, state);
+
   }
+  // Present Toast Right PIN
 
   async Correct() {
     const toast = await this.toastController.create({
@@ -105,7 +110,7 @@ export class DoorPasswordPage implements OnInit {
     });
     toast.present();
   }
-
+  // Present Toast Wrong PIN
   async Wrong() {
     const toast = await this.toastController.create({
       message: 'Wrong PIN.',

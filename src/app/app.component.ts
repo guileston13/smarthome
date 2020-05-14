@@ -51,7 +51,6 @@ export class AppComponent {
       let title = data.payload.title;
       let additionalData = data.payload.additionalData;
       this.showAlert(title, msg, additionalData.task);
-      this.Correct();
     });
 
     // Notification was really clicked/opened
@@ -63,6 +62,11 @@ export class AppComponent {
     });
 
     this.oneSignal.endInit();
+    this.oneSignal.getIds().then(identity => {
+      console.log(identity.pushToken);
+      console.log(identity.userId + " It's Devices ID");
+      localStorage.setItem('playerID', identity.userId);
+    });
   }
 
   async showAlert(title, msg, task) {
@@ -71,7 +75,7 @@ export class AppComponent {
       subHeader: msg,
       buttons: [
         {
-          text: `Action: ${task}`,
+          text: `Action: OK`,
           handler: () => {
             // E.g: Navigate to a specific screen
           }
@@ -81,11 +85,4 @@ export class AppComponent {
     alert.present();
   }
 
-  async Correct() {
-    const toast = await this.toastController.create({
-      message: 'Successfully Entered the PIN.',
-      duration: 2000
-    });
-    toast.present();
-  }
 }

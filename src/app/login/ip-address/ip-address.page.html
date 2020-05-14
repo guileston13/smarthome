@@ -1,18 +1,26 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>IP Address</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content class="ion-padding">
+<ion-content padding class="background" fullscreen>
+  <ion-card>
+    <img class="logo-img" src="../assets/smart.png" />
+    <ion-card-header>
 
-  <ion-item>
-    <ion-label>
-      <ion-icon name="lock"></ion-icon>
-    </ion-label>
-    <ion-input type="text" placeholder="IP Address" [(ngModel)]="input_address"></ion-input>
-  </ion-item>
-  <ion-button (click)="add_address()" color="warning" expand="block">Connect</ion-button>
-
+      <ion-card-title>IP Address</ion-card-title>
+      <ion-card-subtitle>Each Journey must have the first step</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="lock"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="IP Address" [(ngModel)]="input_address"></ion-input>
+      </ion-item>
+      <ion-button (click)="add_address()" color="primary" expand="block">Connect</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

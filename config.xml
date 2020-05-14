@@ -104,5 +104,6 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.6.3">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1+" />
     </plugin>
+    <plugin name="cordova-plugin-app-launcher" spec="^0.4.0" />
     <engine name="android" spec="^7.1.4" />
 </widget>
